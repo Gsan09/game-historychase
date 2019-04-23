@@ -21,6 +21,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.historychase.core.GameScreen;
 import com.historychase.game.HistoryChase;
 import com.historychase.game.assets.Constants;
+import com.historychase.game.assets.Settings;
 import com.historychase.game.assets.scenes.Pause;
 import com.historychase.puzzle.Puzzle;
 
@@ -140,7 +141,10 @@ public class PuzzleScreen extends GameScreen {
     @Override
     public void render(float delta) {
         if(puzzle.check()){
-            game.setScreen(new CreditScreen(game));
+            Settings settings = Settings.instance;
+            game.setScreen(new CreditScreen(game,!settings.cleared[8]));
+            settings.cleared[8] = true;
+            settings.save();
         }
         handleInput(delta);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

@@ -29,7 +29,7 @@ public class TejerosConvention extends WorldMap {
 
         sign = new Sign(this, new Rectangle(670f,125,40,40),HistoryChase.PPM);
         sign.message = "(known as Tejeros Assembly and Tejeros Congress) was the meeting held on March 22, 1897.";
-        sign2 = new Sign(this, new Rectangle(500,16,40,40),HistoryChase.PPM);
+        sign2 = new Sign(this, new Rectangle(2950,16,40,40),HistoryChase.PPM);
         sign2.message = "The convention was called to discuss the defense of Cavite against the Spaniards \nduring the Philippine Revolution.";
     }
 

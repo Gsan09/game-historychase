@@ -48,14 +48,17 @@ public class MainMenuScreen extends GameScreen {
         skin = new Skin();
         if(screen != null){
             if(screen instanceof CreditScreen){
-                unlock = new Unlock(game, new Unlock.Action() {
-                    @Override
-                    public void act() {
-                        unlock = null;
-                        Gdx.input.setInputProcessor(stage);
-                    }
-                });
-                shape = new ShapeRenderer();
+                System.out.println("Here");
+                if(((CreditScreen)screen).showUnlock){
+                    unlock = new Unlock(game, new Unlock.Action() {
+                        @Override
+                        public void act() {
+                            unlock = null;
+                            Gdx.input.setInputProcessor(stage);
+                        }
+                    });
+                    shape = new ShapeRenderer();
+                }
             }
         }
         options = new Options(this, new Options.Action() {

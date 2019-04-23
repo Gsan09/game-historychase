@@ -25,9 +25,9 @@ public class CreditScreen extends GameScreen {
     private Table table,clearTable;
     private Label.LabelStyle style;
     private float stayTimer;
+    public final boolean showUnlock;
 
-    public CreditScreen(HistoryChase game) {
-
+    public CreditScreen(HistoryChase game,boolean showUnlock) {
         super(game);
         this.game = game;
         camera = new OrthographicCamera();
@@ -35,7 +35,7 @@ public class CreditScreen extends GameScreen {
         stage = new Stage(viewport,game.batch);
         stayTimer = 0;
         style= new Label.LabelStyle(new BitmapFont(), Color.WHITE);
-
+        this.showUnlock = showUnlock;
         initTable();
 
     }
