@@ -27,10 +27,12 @@ import com.historychase.game.assets.story.BaldomeroAguinaldoStory;
 import com.historychase.game.assets.story.BinakayanBattleStory;
 import com.historychase.game.assets.story.BonifacioTrialHouseStory;
 import com.historychase.game.assets.story.CanacaoBayStory;
+import com.historychase.game.assets.story.CaviteCityHallStory;
 import com.historychase.game.assets.story.CorregidorIslandStory;
 import com.historychase.game.assets.story.DasmarinasCathedralStory;
 import com.historychase.game.assets.story.DonLadislawStory;
 import com.historychase.game.assets.story.EmptyStory;
+import com.historychase.game.assets.story.GeneralTriasStory;
 import com.historychase.game.assets.story.ImusCathedralStory;
 import com.historychase.game.assets.story.JulianFelipeMonumentStory;
 import com.historychase.game.assets.story.NoveletaTribunalStory;
@@ -93,7 +95,9 @@ public class StorySelectScreen extends GameScreen {
                 new CanacaoBayStory(),
                 new ImusCathedralStory(),
                 new JulianFelipeMonumentStory(),
-                new DonLadislawStory()
+                new DonLadislawStory(),
+                new CaviteCityHallStory(),
+                new GeneralTriasStory()
         };
 
         final StoryButtons buttons[]  = new StoryButtons[4];

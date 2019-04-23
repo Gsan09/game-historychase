@@ -36,7 +36,7 @@ public class SplashScreen extends GameScreen {
             game.resource.loadAssets();
             Gdx.app.log("Splash Screen", "Assets are Loaded!");
 //            Settings.instance.resetUserData();
-            Settings.instance.demo();
+//            Settings.instance.demo();
             game.resource.finishLoading();
             game.setScreen(new MainMenuScreen(game));
 //            game.setScreen(new PlayScreen(game,new BinakayanBattle()));

@@ -26,10 +26,12 @@ import com.historychase.game.assets.scenes.Options;
 import com.historychase.game.assets.scenes.Pause;
 import com.historychase.game.assets.scenes.StageClear;
 import com.historychase.game.assets.scenes.StaticBackground;
+import com.historychase.game.assets.scenes.Toast;
 import com.historychase.game.assets.sprites.Chaser;
 import com.historychase.game.assets.sprites.DisappearTile;
 import com.historychase.game.assets.sprites.KillerTile;
 import com.historychase.game.assets.sprites.Scroll;
+import com.historychase.game.assets.sprites.Sign;
 import com.historychase.game.assets.worlds.AguinaldoShrine;
 import com.historychase.game.assets.worlds.BinakayanBattle;
 import com.historychase.game.assets.worlds.BonifacioTrialHouse;
@@ -77,6 +79,7 @@ public class PlayScreen extends GameScreen implements OnBackPressListener {
     private Pause.Action onSettings;
     private Options options;
     private boolean isOptionShowed;
+    private Toast toast;
 
     private float ctStart = 0;
 
@@ -111,6 +114,7 @@ public class PlayScreen extends GameScreen implements OnBackPressListener {
         background = new StaticBackground(this);
         clearScene = new StageClear(this);
         hud = new Hud(game);
+        toast = new Toast(this);
 
         Settings settings = Settings.instance;
 
@@ -125,6 +129,9 @@ public class PlayScreen extends GameScreen implements OnBackPressListener {
                     chaser.die();
                 else if(o instanceof Scroll)
                     gameClear();
+                else if(o instanceof Sign) {
+                    toast.setMessage(((Sign)o).message);
+                }
                 else if(o instanceof DisappearTile){
                     final DisappearTile tile = (DisappearTile)o;
                     System.out.println("Disappear");
@@ -145,6 +152,13 @@ public class PlayScreen extends GameScreen implements OnBackPressListener {
                     });
                 }
 //                    ((DisappearTile)o).body.applyLinearImpulse(new Vector2(0,-4.5f),((DisappearTile)o).body.getWorldCenter(),true);
+            }
+
+            @Override
+            public void end(Object o) {
+                if(o instanceof Sign) {
+                    toast.clear();
+                }
             }
         });
 
@@ -400,6 +414,8 @@ public class PlayScreen extends GameScreen implements OnBackPressListener {
 //            System.out.println(Gdx.input.getInputProcessor() == options.stage);
             options.draw();
         }
+
+        toast.draw();
     }
 
     @Override

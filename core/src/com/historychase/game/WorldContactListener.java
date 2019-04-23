@@ -20,15 +20,16 @@ public class WorldContactListener implements ContactListener {
 
     }
 
-    private void collidePlayer(Chaser player,Object collider){
-
-    }
-
-
 
     @Override
     public void endContact(Contact contact) {
-
+        if(contact.getFixtureA().getUserData() instanceof Chaser){
+            ((Chaser)contact.getFixtureA().getUserData()).end(contact.getFixtureB().getUserData());
+            return;
+        }else  if(contact.getFixtureB().getUserData() instanceof Chaser){
+            ((Chaser)contact.getFixtureB().getUserData()).end(contact.getFixtureA().getUserData());
+            return;
+        }
     }
 
     @Override

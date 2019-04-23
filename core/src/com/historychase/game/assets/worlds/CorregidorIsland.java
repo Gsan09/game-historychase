@@ -8,6 +8,7 @@ import com.historychase.game.HistoryChase;
 import com.historychase.game.assets.Constants;
 import com.historychase.game.assets.sprites.DisappearTile;
 import com.historychase.game.assets.sprites.Scroll;
+import com.historychase.game.assets.sprites.Sign;
 import com.historychase.game.assets.story.CorregidorIslandStory;
 import com.historychase.game.assets.story.Story;
 

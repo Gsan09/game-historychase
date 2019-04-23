@@ -31,6 +31,12 @@ public class Chaser extends Sprite implements Collidable{
            collide.collide(o);
     }
 
+    @Override
+    public void end(Object o) {
+        for(Collidable collide:collidables)
+            collide.end(o);
+    }
+
     public void addCollisionListener(Collidable listener){
         collidables.add(listener);
     }
@@ -115,7 +121,6 @@ public class Chaser extends Sprite implements Collidable{
         isDead = false;
         BodyDef bodyDef = new BodyDef();
         bodyDef.position.set(x,y);
-//        bodyDef.position.set(24.845f,1.205f);
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         body = world.createBody(bodyDef);
 

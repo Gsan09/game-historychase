@@ -27,6 +27,8 @@ public class Constants {
         public static final String STORY_11 = "images/st11.jpg";
         public static final String STORY_12 = "images/st12.jpg";
         public static final String STORY_13 = "images/st13.jpg";
+        public static final String STORY_14 = "images/st14.jpg";
+        public static final String STORY_15 = "images/st15.jpg";
 
         public static final String DEFAULT_FONT = "font/arial-15.fnt";
         public static final String BUTTONS = "images/buttons.png";
