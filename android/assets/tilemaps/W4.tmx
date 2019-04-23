@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="44">
+ <tileset firstgid="1" source="tile.tsx"/>
+ <layer id="11" name="lel" width="240" height="13">
+  <data encoding="base64" compression="zlib">
+   eJztmLlOxDAQhockbdIsDYcE0tKBBO8AL8EhgQQdSPAI7jhaloKjgx7eZWk4OujhEfibKKyzq3WcjO1E80m/JlHizGQynsQh6i7rGdFGVlguH7ofTn+u6MI9CO3mFPV3lhWWy4fuh9OfK7pwD4IgCIIgCIJgympCtJaUreCf24joDrqHHiLf0Qghcoy5epKULSfSI8x4w5x9hz6gT5m/QiC46BFdYC4mmocWoMXYdzSCIJjSh7YxZ3egXWgPWvEdVE1i9OykJX2bO9ZJ61YX36ZcvrliN30WIdXXIXQ0xraZTeR2K5D8ToM71knrVhffply+uWI3fRYh1Nc11rkD6BHbT1S2OKZwjvIYYmXyvlinP+Zjn1Oil7SwXNjEqscm/3lGqZoPvW70/OrWts6afG8PMXdfoS9sf0NL+G5ejot9HFPDls3fvC/W6Y/52B88p9+0sFzYxKrHJv95RqmaD71u9Pzq1rbOmnhvDzD+Buphrs5C/Rmsd6F9bB/828cxhXMUzlUYo0yvfxGFoSvL/+jnDnyM83dZ0zYRS1doKqcmtkreXcZlW0N/eDKofg==
+  </data>
+ </layer>
+ <layer id="6" name="moving_platforms" width="240" height="13">
+  <data encoding="base64" compression="zlib">
+   eJzt2DEKACAIBVDB+x+kTtlYNNWm8N7i6iD6MQIAAAAA+DEyYuau8GKYGYA27lvfbX936xcA4MxdsgwAVXX/FwBUsQC+kBGF
+  </data>
+ </layer>
+ <objectgroup id="9" name="spikes">
+  <object id="33" x="800" y="160" width="64" height="32"/>
+  <object id="34" x="1424" y="160" width="64" height="32"/>
+  <object id="35" x="2832" y="160" width="128" height="32"/>
+  <object id="41" x="880" y="0" width="63.3333" height="31.3333"/>
+  <object id="42" x="1280.67" y="-0.666667" width="112" height="32.6667"/>
+  <object id="43" x="2145.33" y="-0.666667" width="30" height="32"/>
+ </objectgroup>
+ <objectgroup id="5" name="gnd">
+  <object id="1" x="0" y="192" width="560" height="16"/>
+  <object id="2" x="768" y="192" width="192" height="16"/>
+  <object id="3" x="1216" y="192" width="304" height="16"/>
+  <object id="4" x="2576" y="192" width="448" height="16"/>
+  <object id="5" x="3184" y="192" width="656" height="16"/>
+  <object id="6" x="3838" y="0" width="2" height="208"/>
+  <object id="8" x="0" y="0" width="2" height="208"/>
+ </objectgroup>
+ <objectgroup id="7" name="blocks">
+  <object id="9" x="496" y="160" width="64" height="32"/>
+  <object id="10" x="528" y="128" width="32" height="32"/>
+  <object id="11" x="768" y="160" width="32" height="32"/>
+  <object id="12" x="1216" y="128" width="32" height="64"/>
+  <object id="13" x="1488" y="160" width="32" height="32"/>
+  <object id="14" x="1600" y="128" width="128" height="32"/>
+  <object id="15" x="1888" y="64" width="96" height="32"/>
+  <object id="16" x="2096" y="128" width="128" height="32"/>
+  <object id="17" x="2352" y="80" width="32" height="32"/>
+  <object id="18" x="2448" y="128" width="32" height="32"/>
+  <object id="19" x="2576" y="160" width="32" height="32"/>
+  <object id="20" x="2768" y="160" width="64" height="32"/>
+  <object id="21" x="2800" y="128" width="32" height="32"/>
+  <object id="22" x="2960" y="128" width="32" height="64"/>
+  <object id="23" x="2992" y="160" width="32" height="32"/>
+  <object id="24" x="3184" y="160" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup id="8" name="moving_plats">
+  <object id="27" x="1792" y="112" width="32" height="16"/>
+  <object id="28" x="2864" y="80" width="48" height="16"/>
+  <object id="31" x="3072" y="144" width="80" height="16"/>
+  <object id="38" x="592" y="79.3333" width="63.3333" height="15.3333"/>
+  <object id="39" x="2240" y="176.667" width="95.3333" height="14"/>
+  <object id="40" x="1024" y="111.333" width="96" height="16.6667"/>
+ </objectgroup>
+</map>

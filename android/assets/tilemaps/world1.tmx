@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="34">
+ <tileset firstgid="1" source="tile.tsx"/>
+ <layer id="1" name="background" width="240" height="13">
+  <data encoding="base64" compression="zlib">
+   eJztw0ENAAAMA6HTVv+ipmI/SFg1VVVVVVVVVVVVVVXVxwea7ySO
+  </data>
+ </layer>
+ <layer id="2" name="background2" width="240" height="13">
+  <data encoding="base64" compression="zlib">
+   eJzt1DkOgDAMRFEXoWC9/5VYz4RrFCEKlGXynzR9xnJsBkDNGsw2z+45PKfnCrlfpYt556E6974zGzyjZ/LMnqXL/Spdrcy7tP/SytxLV9peII7/ghj24h33LT2lmSt1qRH3LT2lmdfeRfH+KHVS6oL/1X5/YpQ6KXV54jYB9VK+TQAAAAAAfHEDOE8/AQ==
+  </data>
+ </layer>
+ <layer id="5" name="graphics" width="240" height="13">
+  <data encoding="base64" compression="zlib">
+   eJzt1UEKgCAQAEDP/v9FWf+qDl6CKMzSZAYEL7qrrG4IAAAAAAAAAABjmGIIaRtzbJ0Jo5vUGPxS7hOU02tpQd1xtNfEF+Oq7nrZs/f4d97vG/FK1y0Ff03tvEvuLFWKf3b+p3vm+Qqnq6H6
+  </data>
+ </layer>
+ <layer id="6" name="graphics2" width="240" height="13">
+  <data encoding="base64" compression="zlib">
+   eJzt0jEOQEAQhtEttnL/29BxKwpaiUbI+jfeS7T2y8yUAgAAAAAAAAAAmcZaylS/ruiLmf1L8r7Xo2sLbbuSMMveZsYzLfd99757u8WE3oQG2mm577tv9XaLCb0JDWnm4fwtw3v/3gHeCyFz
+  </data>
+ </layer>
+ <objectgroup id="9" name="ground-col">
+  <object id="21" x="0" y="192" width="448" height="16"/>
+  <object id="24" x="544" y="192" width="240" height="16"/>
+  <object id="25" x="880" y="192" width="64" height="16"/>
+  <object id="26" x="976" y="192" width="160" height="16"/>
+  <object id="27" x="1168" y="192" width="128" height="16"/>
+ </objectgroup>
+ <objectgroup id="10" name="pipe-col">
+  <object id="29" x="512" y="160" width="32" height="16"/>
+  <object id="31" x="514" y="176" width="27.5" height="32"/>
+  <object id="32" x="944" y="176" width="32" height="16"/>
+  <object id="33" x="946" y="192" width="27.75" height="16"/>
+ </objectgroup>
+</map>

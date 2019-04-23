@@ -1,0 +1,33 @@
+chaser.png
+size: 1760, 1790
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dead
+  rotate: false
+  xy: 0, 1610
+  size: 1760, 180
+  orig: 1760, 180
+  offset: 0, 0
+  index: -1
+idle
+  rotate: false
+  xy: 0, 0
+  size: 96, 1460
+  orig: 96, 1460
+  offset: 0, 0
+  index: -1
+jump
+  rotate: false
+  xy: 96, 0
+  size: 122, 1610
+  orig: 122, 1610
+  offset: 0, 0
+  index: -1
+run
+  rotate: false
+  xy: 218, 0
+  size: 125, 1520
+  orig: 125, 1520
+  offset: 0, 0
+  index: -1

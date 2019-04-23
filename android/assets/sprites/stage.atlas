@@ -1,0 +1,173 @@
+stage.png
+size: 1920, 480
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+world_1_clear
+  rotate: false
+  xy: 0, 0
+  size: 240, 160
+  orig: 240, 160
+  offset: 0, 0
+  index: -1
+world_1_locked
+  rotate: false
+  xy: 240, 0
+  size: 240, 160
+  orig: 240, 160
+  offset: 0, 0
+  index: -1
+world_1_open
+  rotate: false
+  xy: 480, 0
+  size: 240, 160
+  orig: 240, 160
+  offset: 0, 0
+  index: -1
+world_2_clear
+  rotate: false
+  xy: 720, 0
+  size: 240, 160
+  orig: 240, 160
+  offset: 0, 0
+  index: -1
+world_2_locked
+  rotate: false
+  xy: 960, 0
+  size: 240, 160
+  orig: 240, 160
+  offset: 0, 0
+  index: -1
+world_2_open
+  rotate: false
+  xy: 1200, 0
+  size: 240, 160
+  orig: 240, 160
+  offset: 0, 0
+  index: -1
+world_3_clear
+  rotate: false
+  xy: 1440, 0
+  size: 240, 160
+  orig: 240, 160
+  offset: 0, 0
+  index: -1
+world_3_locked
+  rotate: false
+  xy: 1680, 0
+  size: 240, 160
+  orig: 240, 160
+  offset: 0, 0
+  index: -1
+world_3_open
+  rotate: false
+  xy: 0, 160
+  size: 240, 160
+  orig: 240, 160
+  offset: 0, 0
+  index: -1
+world_4_clear
+  rotate: false
+  xy: 240, 160
+  size: 240, 160
+  orig: 240, 160
+  offset: 0, 0
+  index: -1
+world_4_locked
+  rotate: false
+  xy: 480, 160
+  size: 240, 160
+  orig: 240, 160
+  offset: 0, 0
+  index: -1
+world_4_open
+  rotate: false
+  xy: 720, 160
+  size: 240, 160
+  orig: 240, 160
+  offset: 0, 0
+  index: -1
+world_5_clear
+  rotate: false
+  xy: 960, 160
+  size: 240, 160
+  orig: 240, 160
+  offset: 0, 0
+  index: -1
+world_5_locked
+  rotate: false
+  xy: 1200, 160
+  size: 240, 160
+  orig: 240, 160
+  offset: 0, 0
+  index: -1
+world_5_open
+  rotate: false
+  xy: 1440, 160
+  size: 240, 160
+  orig: 240, 160
+  offset: 0, 0
+  index: -1
+world_6_clear
+  rotate: false
+  xy: 1680, 160
+  size: 239, 159
+  orig: 239, 159
+  offset: 0, 0
+  index: -1
+world_6_locked
+  rotate: false
+  xy: 0, 320
+  size: 240, 160
+  orig: 240, 160
+  offset: 0, 0
+  index: -1
+world_6_open
+  rotate: false
+  xy: 240, 320
+  size: 240, 160
+  orig: 240, 160
+  offset: 0, 0
+  index: -1
+world_7_clear
+  rotate: false
+  xy: 480, 320
+  size: 240, 160
+  orig: 240, 160
+  offset: 0, 0
+  index: -1
+world_7_locked
+  rotate: false
+  xy: 720, 320
+  size: 240, 160
+  orig: 240, 160
+  offset: 0, 0
+  index: -1
+world_7_open
+  rotate: false
+  xy: 960, 320
+  size: 240, 160
+  orig: 240, 160
+  offset: 0, 0
+  index: -1
+world_8_clear
+  rotate: false
+  xy: 1200, 320
+  size: 240, 160
+  orig: 240, 160
+  offset: 0, 0
+  index: -1
+world_8_locked
+  rotate: false
+  xy: 1440, 320
+  size: 240, 160
+  orig: 240, 160
+  offset: 0, 0
+  index: -1
+world_8_open
+  rotate: false
+  xy: 1680, 320
+  size: 240, 160
+  orig: 240, 160
+  offset: 0, 0
+  index: -1

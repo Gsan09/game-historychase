@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="240" height="15" tilewidth="30" tileheight="30" infinite="0" nextlayerid="16" nextobjectid="89">
+ <tileset firstgid="1" source="tileset-alpha.tsx"/>
+ <layer id="9" name="bg" width="240" height="15">
+  <data encoding="base64" compression="zlib">
+   eJztzjENACAMALBpmXZwAr6YhX1L6NG/GREJAPCZVfaAB9B3yh3wAAAAAAAAAAAAAIDpHqrb4Ho=
+  </data>
+ </layer>
+ <layer id="10" name="gfx" width="240" height="15">
+  <data encoding="base64" compression="zlib">
+   eJztmEFOwzAQRW3nGGVLe5KWFUfgEKBehJ6mUinnAAocg6qFBVO1kU0VkhDG9kzynzQaq+rCP/l/bMUYAADwXFpjxlQTm3snIATvBbRhSv6YUV3BJ6LAewG5+HTGfLnmzg3OLH6G9EyHpLWOUWHMRdHcuZF2ZoV+iD27YhH7mc4j+KAr0vyTA8wwT+iH2LNLI4fsSsov0DnDVnQePig6E7USzvYyu8hvHrTeB6vY0P5flWvQQDnbw+wiv3nAfTAdKT0e+9vjeXaRXyCFW/L1HfM5ntrjMb89VmUX+QVSuKfsLhjz2yeP/5ZdSdqW9mcHw4Izv1I93oW67ErS9kS5vXHH3gfWpOXR+S6Vqntrm7sstz6u/Er2+F9pym4ubc9BRj9O6631Ff5+4EVhpt/Ii+/Od6lU5aZNlrj1ceRXksf/S5vsptZ2bY+1s369ranyP/tg3ZVNoas065C2d2n7SaGtb3q/ASJ9Mn4=
+  </data>
+ </layer>
+ <objectgroup id="11" name="ground">
+  <object id="5" x="0" y="420" width="1320" height="30"/>
+  <object id="8" x="3990" y="420" width="1470" height="30"/>
+  <object id="9" x="5790" y="420" width="1410" height="30"/>
+  <object id="86" x="1500" y="420" width="1230" height="30"/>
+  <object id="87" x="3810" y="450" width="900" height="30" rotation="180"/>
+  <object id="88" x="2910" y="420" width="900" height="30"/>
+ </objectgroup>
+ <objectgroup id="12" name="pipes/solid blocks">
+  <object id="11" x="840" y="360" width="120" height="60"/>
+  <object id="12" x="2100" y="360" width="60" height="60"/>
+  <object id="13" x="2250" y="360" width="60" height="60"/>
+  <object id="14" x="2520" y="360" width="120" height="60"/>
+  <object id="15" x="3780" y="240" width="30" height="180"/>
+  <object id="16" x="3750" y="270" width="30" height="150"/>
+  <object id="17" x="3720" y="300" width="30" height="120"/>
+  <object id="18" x="3690" y="330" width="30" height="90"/>
+  <object id="19" x="3660" y="360" width="30" height="60"/>
+  <object id="20" x="3630" y="390"/>
+  <object id="21" x="3630" y="390" width="30" height="30"/>
+  <object id="25" x="5160" y="390" width="30" height="30"/>
+  <object id="30" x="5190" y="360" width="30" height="30"/>
+  <object id="31" x="5220" y="330" width="30" height="30"/>
+  <object id="32" x="5250" y="300" width="30" height="30"/>
+  <object id="33" x="5280" y="270" width="30" height="30"/>
+  <object id="34" x="5310" y="240" width="30" height="30"/>
+  <object id="35" x="5340" y="210" width="30" height="30"/>
+  <object id="36" x="5370" y="180" width="30" height="30"/>
+  <object id="37" x="5400" y="150" width="30" height="30"/>
+  <object id="38" x="5460" y="150" width="30" height="30" rotation="180"/>
+  <object id="39" x="5190" y="390" width="270" height="30"/>
+  <object id="40" x="5220" y="360" width="240" height="30"/>
+  <object id="41" x="5250" y="330" width="210" height="30"/>
+  <object id="42" x="5280" y="300" width="180" height="30"/>
+  <object id="43" x="5310" y="270" width="150" height="30"/>
+  <object id="44" x="5340" y="240" width="120" height="30"/>
+  <object id="45" x="5370" y="210" width="90" height="30"/>
+  <object id="46" x="5400" y="180" width="60" height="30"/>
+  <object id="50" x="5430" y="150" width="30" height="30"/>
+ </objectgroup>
+ <objectgroup id="13" name="bricks">
+  <object id="53" x="1050" y="210" width="60" height="60"/>
+  <object id="54" x="3330" y="120" width="60" height="60"/>
+  <object id="55" x="3390" y="120" width="60" height="60"/>
+  <object id="58" x="4590" y="240" width="60" height="60"/>
+  <object id="59" x="4650" y="240" width="60" height="60"/>
+  <object id="61" x="4710" y="240" width="60" height="60"/>
+  <object id="62" x="4770" y="240" width="60" height="60"/>
+  <object id="63" x="4830" y="240" width="60" height="60"/>
+  <object id="71" x="1110" y="210" width="60" height="60"/>
+  <object id="72" x="1260" y="90" width="60" height="60"/>
+  <object id="73" x="1320" y="90" width="60" height="60"/>
+  <object id="74" x="1380" y="90" width="60" height="60"/>
+  <object id="75" x="1440" y="90" width="60" height="60"/>
+  <object id="76" x="1500" y="90" width="60" height="60"/>
+ </objectgroup>
+ <objectgroup id="14" name="coin/pu block">
+  <object id="64" x="2580" y="180" width="60" height="60"/>
+  <object id="68" x="1050" y="210" width="60" height="60"/>
+  <object id="69" x="4770" y="240" width="60" height="60"/>
+ </objectgroup>
+ <objectgroup id="15" name="pole"/>
+</map>
