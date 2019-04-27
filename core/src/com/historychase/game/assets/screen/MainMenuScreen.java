@@ -114,13 +114,13 @@ public class MainMenuScreen extends GameScreen {
         tblStories.defaults().height(30);
         tblStories.add(imgStories).padRight(10);
         tblStories.add(imgScores).padRight(10);
-        if(Settings.instance.cleared[7])
+        if(Settings.instance.cleared[8])
             tblStories.add(imgQuiz);
 
         tblStories.row();
         tblStories.add(lblStories).padRight(10);
         tblStories.add(lblScores).padRight(10);
-        if(Settings.instance.cleared[7])
+        if(Settings.instance.cleared[8])
         tblStories.add(lblQuiz);
         tblStories.setBounds(50,20,90,30);
 
@@ -219,7 +219,7 @@ public class MainMenuScreen extends GameScreen {
         imgScores.addListener(scoresListener);
         lblScores.addListener(scoresListener);
 
-        if(Settings.instance.cleared[7]){
+        if(Settings.instance.cleared[8]){
             InputListener quizListener = new  InputListener(){
                 @Override
                 public void touchUp(InputEvent event, float x, float y, int pointer, int button) {

@@ -460,24 +460,14 @@ public class QuizScreen extends GameScreen {
                 Label label = newOrdinaryLabel(choice.getMaskedText());
                 map.put(choice,label);
                 label.addListener(new InputListener(){
-                    private boolean isTouched = false;
                     @Override
                     public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                        if(isTouched){
                             choice.choose();
                             controlTable.setVisible(true);
-                        }
-                        isTouched = false;
                     }
                     @Override
                     public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                        isTouched = true;
                         return true;
-                    }
-
-                    @Override
-                    public void touchDragged(InputEvent event, float x, float y, int pointer) {
-                        isTouched = x > 0 && x < getWidth() && y > 0 && y < getHeight();
                     }
                 });
                 choicesTable.add(label).left().pad(2);

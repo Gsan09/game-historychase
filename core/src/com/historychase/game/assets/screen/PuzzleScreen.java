@@ -142,9 +142,9 @@ public class PuzzleScreen extends GameScreen {
     public void render(float delta) {
         if(puzzle.check()){
             Settings settings = Settings.instance;
-            game.setScreen(new CreditScreen(game,!settings.cleared[8]));
             settings.cleared[8] = true;
-            settings.save();
+            settings.saveUserData();
+            game.setScreen(new CreditScreen(game,!settings.cleared[8]));
         }
         handleInput(delta);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
