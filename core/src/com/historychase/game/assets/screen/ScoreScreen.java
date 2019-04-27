@@ -101,6 +101,14 @@ public class ScoreScreen extends GameScreen {
             table.add().row();
         }
 
+        if(settings.quizScore>-1){
+            table.add(new Label("Quiz score",style)).left().padLeft(20).padTop(10);
+            table.add().width(100);
+            int time = Math.round(settings.time[8]);
+            table.add(new Label(String.format("%d",settings.quizScore),style)).padTop(10).width(100);
+            table.add().row();
+        }
+
         Label done = new Label("Back",styleWhite);
         done.setAlignment(Align.center);
         done.setWidth(50);
@@ -130,7 +138,7 @@ public class ScoreScreen extends GameScreen {
             @Override
             public void touchDragged(InputEvent event, float x, float y, int pointer) {
                 float newPosition = lastScroll-(scrollValue-y);
-                    if(newPosition > 0 &&  newPosition <= 129.375f){
+                if(newPosition > 0 &&  newPosition <= 161.875f){
                     table.setPosition(table.getX(),newPosition);
                 }
             }

@@ -27,6 +27,7 @@ import com.historychase.core.event.OnButtonListener;
 import com.historychase.core.widget.ImageButton;
 import com.historychase.game.HistoryChase;
 import com.historychase.game.assets.Constants;
+import com.historychase.game.assets.Settings;
 import com.historychase.quiz.Choice;
 import com.historychase.quiz.Question;
 import com.historychase.quiz.Quiz;
@@ -40,9 +41,10 @@ public class QuizScreen extends GameScreen {
     public final Stage stage;
     private Table menuTable;
     private QuizTable quizTable;
-    private Table summaryTable,scoreTable;
+    private Table summaryTable,scoreTable,ratingTable;
     private OrthographicCamera camera;
     private Label.LabelStyle ordinaryLabelStyle;
+    private int lastHighScore = 0;
 
     public QuizScreen(HistoryChase game) {
         super(game);
@@ -54,9 +56,19 @@ public class QuizScreen extends GameScreen {
         initMain();
         initQuiz();
         initSummary();
-//        doSummary();
+        initRating();
+//        demo();
         Gdx.input.setInputProcessor(stage);
         stage.act();
+    }
+
+    private void demo(){
+        Quiz quiz = quizTable.quiz;
+
+        for(Question question :quiz){
+            question.get(0).choose();
+        }
+        quizTable.quizNo = 15;
     }
 
     private void initMain(){
@@ -128,9 +140,19 @@ public class QuizScreen extends GameScreen {
         stage.addActor(summaryTable);
     }
 
+    private void initRating(){
+        ratingTable = new Table();
+        ratingTable.setFillParent(true);
+        ratingTable.top();
+        ratingTable.setVisible(false);
+        ratingTable.pad(30);
+        stage.addActor(ratingTable);
+    }
+
     private void doSummary(){
         quizTable.setVisible(false);
         menuTable.setVisible(false);
+        quizTable.controlTable.setVisible(true);
 
         scoreTable.clearChildren();
         for(int i=0;i<8;i++){
@@ -142,8 +164,60 @@ public class QuizScreen extends GameScreen {
             }
             scoreTable.row();
         }
+        int score = 0;
+
+        for(Question question:quizTable.quiz)
+            if(question.getChosen().isCorrect())
+                score += 1;
+
+        Settings settings = Settings.instance.load();
+            lastHighScore = settings.quizScore;
+            if(score > settings.quizScore)
+                settings.quizScore = score;
+
+            settings.saveUserData();
 
         summaryTable.setVisible(true);
+    }
+
+    private void doRating(){
+        summaryTable.setVisible(false);
+        menuTable.setVisible(false);
+        quizTable.setVisible(false);
+        ratingTable.clearChildren();
+        int score = 0;
+        for(Question question:quizTable.quiz)
+            if(question.getChosen().isCorrect())
+                score += 1;
+
+        String rating = "";
+
+        if(score <= 2)
+            rating = "POOR";
+        else if(score <=5)
+            rating = "FAIR";
+        else if(score <=7)
+            rating = "GOOD";
+        else if(score <=10)
+            rating = "GREAT";
+        else if(score <=12)
+            rating = "IMPRESSIVE";
+        else if(score <=14)
+            rating = "EXCELLENT";
+        else if(score <=15)
+            rating = "PERFECT";
+
+        ratingTable.add(newOrdinaryLabel("Total Score")).pad(10);
+        ratingTable.add(newOrdinaryLabel(score+"")).pad(10);
+        ratingTable.row();
+        ratingTable.add(newOrdinaryLabel("Rating")).pad(10);
+        ratingTable.add(newOrdinaryLabel(rating)).pad(10);
+        ratingTable.row();
+        if(lastHighScore < score){
+            ratingTable.add(newOrdinaryLabel("NEW HIGH SCORE!!!!!!!!")).padTop(20).colspan(2);
+            ratingTable.row();
+        }
+        ratingTable.setVisible(true);
     }
 
     private void doQuiz(){
@@ -185,6 +259,9 @@ public class QuizScreen extends GameScreen {
                 quizTable.setVisible(false);
                 menuTable.setVisible(true);
                 return;
+            }
+            if(ratingTable.isVisible()){
+                game.setScreen(new MainMenuScreen(game));
             }
         }
     }
@@ -353,16 +430,23 @@ public class QuizScreen extends GameScreen {
         }
 
         public void nextQuestion(){
+            if(ratingTable != null && ratingTable.isVisible()){
+                game.setScreen(new MainMenuScreen(game));
+                return;
+            }
 
-//            if(summaryTable.isVisible()){
-////                return;
-////            }
+            if(summaryTable != null && summaryTable.isVisible()){
+                doRating();
+                return;
+            }
 
             quizNo +=1;
-            if(quizNo == quiz.size()){
+            if(quizNo >= quiz.size()){
+                quizNo = 0;
                 doSummary();
                 return;
             }
+
             final Question question = quiz.get(quizNo);
             map = new HashMap<Choice,Label>();
             questionNoLabel.setText(String.format("Question # %d",quizNo+1));

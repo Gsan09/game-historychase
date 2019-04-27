@@ -18,6 +18,7 @@ public class Settings {
     public boolean cleared[] = {false,false,false,false,false,false,false,false,false};
     public float time[] = {0,0,0,0,0,0,0,0,0};
     public boolean newGame = true;
+    public int quizScore = -1;
 
     public Settings loadUserData(){
         Preferences prefs = Gdx.app.getPreferences(USER_KEY);
@@ -27,6 +28,8 @@ public class Settings {
             cleared[i] = prefs.getBoolean("World_" + (i + 1) + "_Cleared", false);
             time[i] = prefs.getFloat("World_" + (i + 1) + "_BestTime", 0f);
         }
+
+        quizScore = prefs.getInteger("Quiz_Score",-1);
 
         if(!cleared[0])
            maxLevel = 1;
@@ -64,6 +67,7 @@ public class Settings {
             prefs.putBoolean("World_"+(i+1)+"_Cleared",cleared[i]);
             prefs.putFloat("World_"+(i+1)+"_BestTime",time[i]);
         }
+        prefs.putInteger("Quiz_Score",quizScore);
         prefs.flush();
         return this;
     }
@@ -110,6 +114,7 @@ public class Settings {
             cleared[i] = true;
             time[i] = 0;
         }
+        quizScore = 0;
         return saveUserData();
     }
 
