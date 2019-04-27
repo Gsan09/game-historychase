@@ -105,14 +105,24 @@ public class MainMenuScreen extends GameScreen {
         Label lblStories = new Label("View Stories",small);
         Label lblScores = new Label("High Score",small);
 
+        Image imgQuiz = new Image(new Texture(Gdx.files.internal("images/quiz.png")));
+        imgQuiz.setScaling(Scaling.fit);
+        Label lblQuiz = new Label("Quiz",small);
+
         Table tblStories = new Table();
         tblStories.setVisible(Settings.instance.hasCleared());
         tblStories.defaults().height(30);
         tblStories.add(imgStories).padRight(10);
-        tblStories.add(imgScores).row();
+        tblStories.add(imgScores).padRight(10);
+        if(Settings.instance.cleared[7])
+            tblStories.add(imgQuiz);
+
+        tblStories.row();
         tblStories.add(lblStories).padRight(10);
-        tblStories.add(lblScores);
-        tblStories.setBounds(50,20,60,30);
+        tblStories.add(lblScores).padRight(10);
+        if(Settings.instance.cleared[7])
+        tblStories.add(lblQuiz);
+        tblStories.setBounds(50,20,90,30);
 
         lblNewGame.addListener(new InputListener(){
             @Override
@@ -209,6 +219,25 @@ public class MainMenuScreen extends GameScreen {
         imgScores.addListener(scoresListener);
         lblScores.addListener(scoresListener);
 
+        if(Settings.instance.cleared[7]){
+            InputListener quizListener = new  InputListener(){
+                @Override
+                public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                    game.resource.music.playSound(Constants.Path.CLICK_SOUND);
+                    game.setScreen(new QuizScreen(game));
+                }
+
+                @Override
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                    return true;
+                }
+            };
+
+            imgQuiz.addListener(quizListener);
+            lblQuiz.addListener(quizListener);
+        }
+
+
         table.add(lblNewGame);
         table.row();
         table.add(lblSettings);
@@ -218,6 +247,7 @@ public class MainMenuScreen extends GameScreen {
         stage.addActor(tblStories);
         stage.addActor(logoImg);
         stage.addActor(table);
+
 
         if(unlock != null){
             Gdx.input.setInputProcessor(unlock.stage);

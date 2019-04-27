@@ -38,7 +38,7 @@ public class SplashScreen extends GameScreen {
 //            Settings.instance.resetUserData();
 //            Settings.instance.demo();
             game.resource.finishLoading();
-            game.setScreen(new MainMenuScreen(game));
+            game.setScreen(new QuizScreen(game));
 //            game.setScreen(new PlayScreen(game,new BinakayanBattle()));
         }else{
             Gdx.gl.glClearColor(255, 255, 255, 1);
