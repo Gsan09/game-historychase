@@ -110,7 +110,7 @@ public class Settings {
 
     public Settings demo(){
         this.newGame = false;
-        for(int i=0;i<7;i++){
+        for(int i=0;i<9;i++){
             cleared[i] = true;
             time[i] = 0;
         }

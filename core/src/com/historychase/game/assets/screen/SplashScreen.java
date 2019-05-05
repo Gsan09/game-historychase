@@ -36,9 +36,8 @@ public class SplashScreen extends GameScreen {
             game.resource.loadAssets();
             Gdx.app.log("Splash Screen", "Assets are Loaded!");
 //            Settings.instance.resetUserData();
-            Settings.instance.demo();
             game.resource.finishLoading();
-            game.setScreen(new CreditScreen((HistoryChase) game,true));
+            game.setScreen(new MainMenuScreen((HistoryChase) game));
         }else{
             Gdx.gl.glClearColor(255, 255, 255, 1);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

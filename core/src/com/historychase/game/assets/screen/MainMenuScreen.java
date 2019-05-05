@@ -74,6 +74,7 @@ public class MainMenuScreen extends GameScreen {
         Gdx.input.setCatchBackKey(false);
     }
 
+    private int demo_mode = 0;
     public void init(){
 
         game.resource.music.playMusic(Constants.Path.MAIN_MENU_MUSIC);
@@ -86,6 +87,19 @@ public class MainMenuScreen extends GameScreen {
 
         Texture logo = new Texture(Gdx.files.internal("images/logo.png"));
         Image logoImg = new Image(logo);
+        logoImg.addListener(new InputListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+//                if(demo_mode++ == 10)
+//                    Settings.instance.demo();
+//                System.out.println(demo_mode);
+            }
+        });
         logoImg.setBounds(viewport.getWorldWidth()/20,viewport.getWorldHeight()/3,200,140);
 
         Table table = new Table();
