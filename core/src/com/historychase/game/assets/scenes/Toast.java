@@ -89,6 +89,8 @@ public class Toast implements Disposable {
 
         if(lblMessage.getText().toString().split("\n").length == 3)
             shape.box(0,(viewport.getWorldHeight()*5.2f/8)-tbl.getHeight(),0,viewport.getWorldWidth(),viewport.getWorldHeight()/6,0);
+        if(lblMessage.getText().toString().split("\n").length == 4)
+            shape.box(0,(viewport.getWorldHeight()*4.6f/8)-tbl.getHeight(),0,viewport.getWorldWidth(),viewport.getWorldHeight()/4,0);
         else
             shape.box(0,viewport.getWorldHeight()*5.6f/8,0,viewport.getWorldWidth(),viewport.getWorldHeight()/8,0);
 

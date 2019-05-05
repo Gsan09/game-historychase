@@ -17,6 +17,8 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.historychase.core.GameScreen;
 import com.historychase.game.HistoryChase;
 
+import static com.historychase.game.assets.Constants.Path.CREDITS_MUSIC;
+
 
 public class CreditScreen extends GameScreen {
     private final HistoryChase game;
@@ -26,6 +28,7 @@ public class CreditScreen extends GameScreen {
     private Label.LabelStyle style;
     private float stayTimer;
     public final boolean showUnlock;
+    private boolean music_playing = false;
 
     public CreditScreen(HistoryChase game,boolean showUnlock) {
         super(game);
@@ -52,22 +55,17 @@ public class CreditScreen extends GameScreen {
         table.row();
         table.add(new Label("(Cavite version)",style)).pad(2).padBottom(10).colspan(3);
         table.row();
-        table.add(new Label("Created BY ChingChong",style)).pad(2).padBottom(80).colspan(3);
-        table.row();
-        addName("Game Director","Batousai");
-        addName("Producer","Paano Mo Nasabi");
-        addName("","Advance Ako Magisip");
-        addName("Creative Director","Dalagang Pilipina (Yeh)");
-        addName("Music Director","Tanya Markova");
-        addName("Animators","Dante Gulapa");
         addFullRow("");
         addFullRow("");
-        addFullRow("Special Thanks To");
-        addName("Nanay Ko","Jolina");
-        addName("Nanay Niyo","Melai");
-        addName("Nanay Nating Lahat","Carla");
         addFullRow("");
         addFullRow("");
+        addName("Developers:","Bart Ceazar D. Galarde");
+        addName("","John Mark T. Bombay");
+        addName("","Antonio D. Della Torre Jr.");
+        addFullRow("");
+        addFullRow("Special thanks to");
+        addName("Adviser","Mark Philip M. Sy");
+        addName("Technical Critic","Ma. Yvonne Czarina R. Costelo");
         addFullRow("");
         addFullRow("");
         addFullRow("");
@@ -113,6 +111,9 @@ public class CreditScreen extends GameScreen {
         camera.update();
     }
 
+    private boolean timer_start = false;
+    private float timer_run = 0;
+
     @Override
     public void render(float delta) {
         handleInput(delta);
@@ -121,16 +122,28 @@ public class CreditScreen extends GameScreen {
         if((stayTimer += delta) < 3){
             table.setVisible(false);
         }else{
-            table.setVisible(true);
-            if((stayTimer += delta) > 5){
-                table.setPosition(0,table.getY()+20*delta);
+            if(!timer_start){
+                table.setVisible(true);
+                if(!music_playing){
+                    music_playing = true;
+                    game.resource.music.playMusic(CREDITS_MUSIC);
+                }
+                if((stayTimer += delta) > 5 && table.getY()+20*delta < 445.5918){
+                    table.setPosition(0,table.getY()+20*delta);
+                }
+                if(table.getY()+20*delta >= 445.5918){
+                    timer_start = true;
+                }
+                clearTable.setVisible(false);
             }
+        }
 
-            if(table.getY() > table.getHeight()){
+        if(timer_start){
+            if((timer_run += delta) >= 5f){
                 game.setScreen(new MainMenuScreen(game,this));
             }
-            clearTable.setVisible(false);
         }
+
         stage.draw();
     }
 

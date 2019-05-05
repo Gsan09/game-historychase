@@ -135,6 +135,9 @@ public class PuzzleScreen extends GameScreen {
         if(Gdx.input.isKeyJustPressed(Input.Keys.BACK) || Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
                 game.setScreen(new MainMenuScreen(game));
         }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.C)){
+            puzzle.fix();
+        }
         camera.update();
     }
 

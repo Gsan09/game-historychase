@@ -19,7 +19,7 @@ public class AguinaldoShrine extends WorldMap {
     private DisappearTile tiles[];
     private DisappearTile collapse[];
     private Texture tileImg,collapseImg;
-    private Sign sign;
+    private Sign    sign;
     private Sign sign2;
 
     public AguinaldoShrine() {
@@ -42,9 +42,9 @@ public class AguinaldoShrine extends WorldMap {
 
         sign = new Sign(this, new Rectangle(150,16,40,40),HistoryChase.PPM);
 
-        sign.message = "this Aguinaldo ancestral home where Gen. Emilio Aguinaldo proclaimed\nPhilippine Independence from Spain on June 12,1898.";
         sign2 = new Sign(this, new Rectangle(1925.754f,16,40,40),HistoryChase.PPM);
-        sign2.message = "Gen. Emilio Aguinaldo himself donated the mansion and the lot to the Philippine Government on June 12,1963\n to perpetuate the spirit of the Philippine Revolution of 1896 that put an end to Spanish colonization of the country";
+        sign2.message = "this Aguinaldo ancestral home where Gen. Emilio Aguinaldo proclaimed\nPhilippine Independence from Spain on June 12,1898.";
+        sign.message = "Gen. Emilio Aguinaldo himself donated the mansion and the lot\nto the Philippine Government on June 12,1963 to perpetuate the spirit\nof the Philippine Revolution of 1896 that put an end to Spanish\ncolonization of the country";
 
     }
 

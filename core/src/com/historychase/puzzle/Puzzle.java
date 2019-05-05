@@ -66,6 +66,15 @@ public class Puzzle{
         if(check())shuffle();
     }
 
+    public void fix(){
+        for(int x=0;x<horizontal;x++){
+            for(int y=0;y<vertical;y++){
+                if(pieces[x][y].x != x || pieces[x][y].y != y)
+                    swap(x,y,pieces[x][y].x,pieces[x][y].y);
+            }
+        }
+    }
+
     public static Puzzle create(Texture display,int horizontal,int vertical){
         return new Puzzle(display,horizontal,vertical);
     }

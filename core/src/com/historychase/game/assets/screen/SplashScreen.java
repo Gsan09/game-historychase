@@ -38,7 +38,7 @@ public class SplashScreen extends GameScreen {
 //            Settings.instance.resetUserData();
             Settings.instance.demo();
             game.resource.finishLoading();
-            game.setScreen(new MainMenuScreen(game));
+            game.setScreen(new CreditScreen((HistoryChase) game,true));
         }else{
             Gdx.gl.glClearColor(255, 255, 255, 1);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

@@ -20,6 +20,7 @@ public class SoundManager {
 
     public void playMusic(String path,boolean isLoop){
         Settings settings = Settings.instance;
+        settings.load();
         if(manager.get(path,Music.class).equals(music))return;
 
         if(music != null){

@@ -415,7 +415,8 @@ public class PlayScreen extends GameScreen implements OnBackPressListener {
             options.draw();
         }
 
-        toast.draw();
+        if(!isPaused)
+            toast.draw();
     }
 
     @Override
