@@ -9,6 +9,8 @@ import com.historychase.core.GameScreen;
 import com.historychase.game.HistoryChase;
 import com.historychase.game.assets.Settings;
 
+import java.util.Set;
+
 public class SplashScreen extends GameScreen {
     private HistoryChase game;
     private GameScreen nextScreen;
@@ -36,6 +38,7 @@ public class SplashScreen extends GameScreen {
             game.resource.loadAssets();
             Gdx.app.log("Splash Screen", "Assets are Loaded!");
 //            Settings.instance.resetUserData();
+            Settings.instance.demo();
             game.resource.finishLoading();
             game.setScreen(new MainMenuScreen((HistoryChase) game));
         }else{

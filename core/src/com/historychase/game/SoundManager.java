@@ -29,15 +29,17 @@ public class SoundManager {
 
         music = manager.get(path,Music.class);
 
-        music.setVolume(settings.musicEnabled?settings.musicVolume:0);
+        music.setVolume(settings.musicEnabled?0.5f:0);
         music.setLooping(isLoop);
         music.play();
     }
 
     public void update(){
-        Settings settings = Settings.instance;
-        if(music != null)
-            music.setVolume(settings.musicEnabled?settings.musicVolume:0);
+        Settings settings = Settings.instance.load();
+        if(music != null){
+            music.setVolume(settings.musicEnabled?0.5f:0);
+            music.play();
+        }
     }
 
     public void playSound(String path){

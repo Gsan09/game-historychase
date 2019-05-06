@@ -32,19 +32,22 @@ import com.historychase.quiz.Choice;
 import com.historychase.quiz.Question;
 import com.historychase.quiz.Quiz;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 
 public class QuizScreen extends GameScreen {
     private final HistoryChase game;
     public final Stage stage;
-    private Table menuTable;
     private QuizTable quizTable;
-    private Table summaryTable,scoreTable,ratingTable;
+    private Table activeTable;
     private OrthographicCamera camera;
     private Label.LabelStyle ordinaryLabelStyle;
     private int lastHighScore = 0;
+    private Texture background;
+    private ControlTable controls;
 
     public QuizScreen(HistoryChase game) {
         super(game);
@@ -52,177 +55,145 @@ public class QuizScreen extends GameScreen {
         camera = new OrthographicCamera();
         viewport = new FitViewport(HistoryChase.VIEW_WITDH,HistoryChase.VIEW_HEIGHT,camera);
         stage = new Stage(viewport,game.batch);
+        background = new Texture("images/story.jpg");;
+
         initStyles();
-        initMain();
-        initQuiz();
-        initSummary();
-        initRating();
+        activeTable = new MenuTable();
+        stage.addActor(activeTable);
+//        initMain();
+//        initQuiz();
+//        initSummary();
+//        initRating();
 //        demo();
         Gdx.input.setInputProcessor(stage);
+        controls = new ControlTable();
+        stage.addActor(controls);
         stage.act();
     }
 
-    private void demo(){
-        Quiz quiz = quizTable.quiz;
+    public void switchTable(Table table){
+        System.out.println(activeTable.getX());
+        activeTable.remove();
+        activeTable = table;
+//        table.top();
+        stage.addActor(table);
+    }
 
-        for(Question question :quiz){
-            question.get(0).choose();
+    private class MenuTable extends Table{
+        public MenuTable(){
+            super();
+            setFillParent(true);
+            top();
+            add(new Image(new Texture("images/quiz/quiz_logo.png"))).colspan(2).padTop(30);
+            ImageButton back = new ImageButton(new Texture("images/quiz/btn_back.png"));
+            back.setScaling(Scaling.fit);
+            ImageButton start = new ImageButton(new Texture("images/quiz/btn_start.png"));
+            start.setScaling(Scaling.fit);
+            row().padTop(50);
+            add(start).height(18).width(70);
+            add(back).height(18).width(70);
+            row();
+            start.setButtonListener(new OnButtonListener() {
+                @Override
+                public void click(InputEvent v) {
+                    game.resource.music.playSound(Constants.Path.CLICK_SOUND);
+                    switchTable(new QuizTable());
+                }
+
+                @Override
+                public void hover(InputEvent v) {
+
+                }
+            });
+            back.setButtonListener(new OnButtonListener() {
+                @Override
+                public void click(InputEvent v) {
+                    game.resource.music.playSound(Constants.Path.CLICK_SOUND);
+                    game.setScreen(new MainMenuScreen(game));
+                }
+
+                @Override
+                public void hover(InputEvent v) {
+
+                }
+            });
         }
-        quizTable.quizNo = 15;
     }
 
-    private void initMain(){
+    private class SummaryTable extends Table{
+        private Table scoreTable;
+        private int score;
+        public SummaryTable(Quiz quiz){
+            super();
+            setFillParent(true);
+            top();
+            add(newOrdinaryLabel("Quiz Summary")).left().pad(10).colspan(2);
+            row();
+            scoreTable = new Table();
+            add(scoreTable);
+            fill(quiz);
 
-        Image logo = new Image(new Texture("images/quiz/quiz_logo.png"));
-        ImageButton back = new ImageButton(new Texture("images/quiz/btn_back.png"));
-        back.setScaling(Scaling.fit);
-        ImageButton start = new ImageButton(new Texture("images/quiz/btn_start.png"));
-        start.setScaling(Scaling.fit);
-
-        start.setButtonListener(new OnButtonListener() {
-            @Override
-            public void click(InputEvent v) {
-                game.resource.music.playSound(Constants.Path.CLICK_SOUND);
-                doQuiz();
-            }
-
-            @Override
-            public void hover(InputEvent v) {
-
-            }
-        });
-
-        back.setButtonListener(new OnButtonListener() {
-            @Override
-            public void click(InputEvent v) {
-                game.resource.music.playSound(Constants.Path.CLICK_SOUND);
-                game.setScreen(new MainMenuScreen(game));
-            }
-
-            @Override
-            public void hover(InputEvent v) {
-
-            }
-        });
-
-        menuTable = new Table();
-        menuTable.setVisible(true);
-        menuTable.setFillParent(true);
-        menuTable.top();
-        menuTable.add(logo).colspan(2).padTop(30);
-        menuTable.row().padTop(50);
-        menuTable.add(start).height(18).width(70);
-        menuTable.add(back).height(18).width(70);
-        menuTable.row();
-
-        stage.addActor(menuTable);
-    }
-
-    private void initQuiz(){
-        quizTable = new QuizTable();
-        quizTable.setVisible(false);
-        quizTable.setFillParent(true);
-        quizTable.top();
-        quizTable.nextQuestion();
-        stage.addActor(quizTable.controlTable);
-        stage.addActor(quizTable);
-    }
-
-    private void initSummary(){
-        summaryTable = new Table();
-        summaryTable.setFillParent(true);
-        summaryTable.top();
-        summaryTable.setVisible(false);
-        summaryTable.add(newOrdinaryLabel("Quiz Summary")).left().pad(10).colspan(2);
-        summaryTable.row();
-        scoreTable = new Table();
-        summaryTable.add(scoreTable);
-        stage.addActor(summaryTable);
-    }
-
-    private void initRating(){
-        ratingTable = new Table();
-        ratingTable.setFillParent(true);
-        ratingTable.top();
-        ratingTable.setVisible(false);
-        ratingTable.pad(30);
-        stage.addActor(ratingTable);
-    }
-
-    private void doSummary(){
-        quizTable.setVisible(false);
-        menuTable.setVisible(false);
-        quizTable.controlTable.setVisible(true);
-
-        scoreTable.clearChildren();
-        for(int i=0;i<8;i++){
-            scoreTable.add(newOrdinaryLabel(String.format("Question # %d :  ",i+1)));
-            scoreTable.add(newOrdinaryLabel(quizTable.quiz.get(i).getChosen().isCorrect()?"Correct":"Wrong")).padRight(10);
-            if(i!=7){
-                scoreTable.add(newOrdinaryLabel(String.format("Question # %d :  ",(i+7)+1)));
-                scoreTable.add(newOrdinaryLabel(quizTable.quiz.get(i+7).getChosen().isCorrect()?"Correct":"Wrong"));
-            }
-            scoreTable.row();
-        }
-        int score = 0;
-
-        for(Question question:quizTable.quiz)
-            if(question.getChosen().isCorrect())
-                score += 1;
-
-        Settings settings = Settings.instance.load();
+            Settings settings = Settings.instance;
+            settings.load();
             lastHighScore = settings.quizScore;
-            if(score > settings.quizScore)
+
+            if(lastHighScore < score){
                 settings.quizScore = score;
-
-            settings.saveUserData();
-
-        summaryTable.setVisible(true);
-    }
-
-    private void doRating(){
-        summaryTable.setVisible(false);
-        menuTable.setVisible(false);
-        quizTable.setVisible(false);
-        ratingTable.clearChildren();
-        int score = 0;
-        for(Question question:quizTable.quiz)
-            if(question.getChosen().isCorrect())
-                score += 1;
-
-        String rating = "";
-
-        if(score <= 2)
-            rating = "POOR";
-        else if(score <=5)
-            rating = "FAIR";
-        else if(score <=7)
-            rating = "GOOD";
-        else if(score <=10)
-            rating = "GREAT";
-        else if(score <=12)
-            rating = "IMPRESSIVE";
-        else if(score <=14)
-            rating = "EXCELLENT";
-        else if(score <=15)
-            rating = "PERFECT";
-
-        ratingTable.add(newOrdinaryLabel("Total Score")).pad(10);
-        ratingTable.add(newOrdinaryLabel(score+"")).pad(10);
-        ratingTable.row();
-        ratingTable.add(newOrdinaryLabel("Rating")).pad(10);
-        ratingTable.add(newOrdinaryLabel(rating)).pad(10);
-        ratingTable.row();
-        if(lastHighScore < score){
-            ratingTable.add(newOrdinaryLabel("NEW HIGH SCORE!!!!!!!!")).padTop(20).colspan(2);
-            ratingTable.row();
+                settings.saveUserData();
+            }
         }
-        ratingTable.setVisible(true);
+
+        private void fill(Quiz quiz){
+            for(int i=0;i<8;i++){
+                scoreTable.add(newOrdinaryLabel(String.format("Question # %d :  ",i+1)));
+                scoreTable.add(newOrdinaryLabel(quiz.get(i).getChosen().isCorrect()?"Correct":"Wrong")).padRight(10);
+                score += (quiz.get(i).getChosen().isCorrect()?1:0);
+                if(i!=7){
+                    scoreTable.add(newOrdinaryLabel(String.format("Question # %d :  ",(i+7)+1)));
+                    scoreTable.add(newOrdinaryLabel(quiz.get(i+7).getChosen().isCorrect()?"Correct":"Wrong"));
+                    score += (quiz.get(i+7).getChosen().isCorrect()?1:0);
+                }
+                scoreTable.row();
+            }
+        }
+
     }
 
-    private void doQuiz(){
-        quizTable.setVisible(true);
-        menuTable.setVisible(false);
+    private class RatingTable extends Table{
+        private RatingTable(int score){
+            super();
+            setFillParent(true);
+            top();
+            pad(30);
+            String rating = "";
+
+            if(score <= 2)
+                rating = "POOR";
+            else if(score <=5)
+                rating = "FAIR";
+            else if(score <=7)
+                rating = "GOOD";
+            else if(score <=10)
+                rating = "GREAT";
+            else if(score <=12)
+                rating = "IMPRESSIVE";
+            else if(score <=14)
+                rating = "EXCELLENT";
+            else if(score <=15)
+                rating = "PERFECT";
+
+            add(newOrdinaryLabel("Total Score")).pad(10);
+            add(newOrdinaryLabel(score+"")).pad(10);
+            row();
+            add(newOrdinaryLabel("Rating")).pad(10);
+            add(newOrdinaryLabel(rating)).pad(10);
+            row();
+
+            if(lastHighScore < score){
+                add(newOrdinaryLabel("NEW HIGH SCORE!!!!!!!!")).padTop(20).colspan(2);
+                row();
+            }
+        }
     }
 
     private void initStyles(){
@@ -242,27 +213,10 @@ public class QuizScreen extends GameScreen {
 
     private void handleInput(float dt){
         if(Gdx.input.isKeyJustPressed(Input.Keys.BACK) || Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
-            if(menuTable.isVisible()){
-                game.setScreen(new MainMenuScreen(game));
-                return;
-            }
-            if(quizTable.isVisible()){
-                quizTable.quiz.initQuiz();
-                quizTable.quizNo = -1;
-                quizTable.nextQuestion();
-                quizTable.setVisible(false);
-                menuTable.setVisible(true);
-                return;
-            }
-            if(summaryTable.isVisible()){
-                summaryTable.setVisible(false);
-                quizTable.setVisible(false);
-                menuTable.setVisible(true);
-                return;
-            }
-            if(ratingTable.isVisible()){
-                game.setScreen(new MainMenuScreen(game));
-            }
+            if(activeTable instanceof MenuTable)
+             game.setScreen(new MainMenuScreen(game));
+            else
+                switchTable(new MenuTable());
         }
     }
 
@@ -272,9 +226,12 @@ public class QuizScreen extends GameScreen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.setProjectionMatrix(camera.combined);
         game.batch.begin();
-        game.batch.draw(new Texture("images/story.jpg"),0,0,viewport.getWorldWidth(),viewport.getWorldHeight());
+        game.batch.draw(background,0,0,viewport.getWorldWidth(),viewport.getWorldHeight());
         game.batch.end();
-        drawRect(quizTable.getSelectedLabel(),quizTable.choicesTable.getX(),quizTable.choicesTable.getY());
+        if(activeTable instanceof QuizTable){
+            QuizTable qt = (QuizTable) activeTable;
+            drawRect(qt.selectedChoice,qt.choicesTable.getX(),qt.choicesTable.getY());
+        }
         stage.draw();
 
 //        debug();
@@ -376,6 +333,50 @@ public class QuizScreen extends GameScreen {
         Gdx.gl.glLineWidth(1);
     }
 
+    interface ActionPerfomListener{
+        public void actionPerform();
+    };
+
+    private class ControlTable extends Table{
+        private ActionPerfomListener listener;
+        public ControlTable(){
+            super();
+            Label submit = newOrdinaryLabel("Continue");
+            submit.addListener(new InputListener(){
+
+                private boolean isTouched = false;
+
+                @Override
+                public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+
+                    game.resource.music.playSound(Constants.Path.CLICK_SOUND);
+                    if(activeTable instanceof QuizTable){
+                        QuizTable qt = ((QuizTable)activeTable);
+                        if(qt.quizNo < 14){
+                            qt.nextQuestion();
+                            System.out.println(qt.quizNo);
+                        }
+                        else{
+                            switchTable(new SummaryTable(qt.quiz));
+                        }
+                    }else if(activeTable instanceof SummaryTable){
+                        SummaryTable st = ((SummaryTable)activeTable);
+                        switchTable(new RatingTable(st.score));
+                    }
+                }
+                @Override
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                    return true;
+                }
+
+            });
+
+            add(submit).pad(5);
+            setPosition(viewport.getWorldWidth()-getWidth()-50,20);
+            setVisible(false);
+        }
+    }
+
     private class QuizTable extends Table{
         private Label questionNoLabel;
         private Table choicesTable;
@@ -383,45 +384,22 @@ public class QuizScreen extends GameScreen {
         private Quiz quiz;
         private int quizNo = -1;
         private Map<Choice,Label> map;
-        private Table controlTable;
+        private Label selectedChoice;
 
         public QuizTable() {
             super();
+            setFillParent(true);
+            top();
             quiz = new Quiz();
             quiz.initQuiz();
             init();
+            nextQuestion();
         }
-
         private void init() {
             questionNoLabel = newOrdinaryLabel("");
             choicesTable = new Table();
-            controlTable = new Table();
             questionTable = new Table();
-            Label submit = newOrdinaryLabel("Continue");
-            submit.addListener(new InputListener(){
-                private boolean isTouched = false;
-                @Override
-                public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                    if(isTouched){
-                        game.resource.music.playSound(Constants.Path.CLICK_SOUND);
-                        quizTable.nextQuestion();
-                    }
-                    isTouched = false;
-                }
-                @Override
-                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                    isTouched = true;
-                    return true;
-                }
 
-                @Override
-                public void touchDragged(InputEvent event, float x, float y, int pointer) {
-                    isTouched = x > 0 && x < getWidth() && y > 0 && y < getHeight();
-                }
-            });
-            controlTable.add(submit).pad(5);
-            controlTable.setVisible(false);
-            controlTable.setPosition(viewport.getWorldWidth()-controlTable.getWidth()-50,20);
             this.add(questionNoLabel).padTop(10).padBottom(5);
             this.row();
             this.add(questionTable);
@@ -430,40 +408,30 @@ public class QuizScreen extends GameScreen {
         }
 
         public void nextQuestion(){
-            if(ratingTable != null && ratingTable.isVisible()){
-                game.setScreen(new MainMenuScreen(game));
-                return;
-            }
-
-            if(summaryTable != null && summaryTable.isVisible()){
-                doRating();
-                return;
-            }
-
-            quizNo +=1;
-            if(quizNo >= quiz.size()){
-                quizNo = 0;
-                doSummary();
-                return;
-            }
+            selectedChoice = null;
+            controls.setVisible(false);
+            quizNo++;
 
             final Question question = quiz.get(quizNo);
-            map = new HashMap<Choice,Label>();
+
             questionNoLabel.setText(String.format("Question # %d",quizNo+1));
+
             questionTable.clearChildren();
+
             for(String line : question.getText())
                 questionTable.add(newOrdinaryLabel(line)).row();
+
             choicesTable.clearChildren();
-            controlTable.setVisible(false);
 
             for(final Choice choice : question){
-                Label label = newOrdinaryLabel(choice.getMaskedText());
-                map.put(choice,label);
+                final Label label = newOrdinaryLabel(choice.getMaskedText());
+
                 label.addListener(new InputListener(){
                     @Override
                     public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                            selectedChoice = label;
                             choice.choose();
-                            controlTable.setVisible(true);
+                            controls.setVisible(true);
                     }
                     @Override
                     public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -475,10 +443,5 @@ public class QuizScreen extends GameScreen {
             }
         }
 
-        public Label getSelectedLabel(){
-            if(quizNo < 0 || quizNo >= quiz.size())return null;
-            if(quiz.get(quizNo).getChosen() == null)return null;
-            return map.get(quiz.get(quizNo).getChosen());
-        }
     }
 }

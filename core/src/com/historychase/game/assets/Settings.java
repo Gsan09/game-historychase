@@ -9,8 +9,8 @@ public class Settings {
 
     public static final Settings instance = new Settings();
 
-    public int musicVolume = 10;
-    public int soundVolume = 10;
+    public float musicVolume = 0.5f;
+    public float soundVolume = 0.5f;
     public boolean musicEnabled = true;
     public boolean soundEnabled = true;
 
@@ -82,8 +82,8 @@ public class Settings {
 
     public Settings load(){
         Preferences prefs = Gdx.app.getPreferences(PREFERENCE_KEY);
-        musicVolume = prefs.getInteger("musicVolume",musicVolume);
-        soundVolume = prefs.getInteger("soundVolume",soundVolume);
+        musicVolume = prefs.getFloat("musicVolume",musicVolume);
+        soundVolume = prefs.getFloat("soundVolume",soundVolume);
         musicEnabled = prefs.getBoolean("musicEnabled",musicEnabled);
         soundEnabled = prefs.getBoolean("soundEnabled",soundEnabled);
         return save();
@@ -92,8 +92,8 @@ public class Settings {
 
     public Settings save(){
         Preferences prefs = Gdx.app.getPreferences(PREFERENCE_KEY);
-        prefs.putInteger("musicVolume",musicVolume);
-        prefs.putInteger("soundVolume",soundVolume);
+        prefs.putFloat("musicVolume",musicVolume);
+        prefs.putFloat("soundVolume",soundVolume);
         prefs.putBoolean("musicEnabled",musicEnabled);
         prefs.putBoolean("soundEnabled",soundEnabled);
         prefs.flush();

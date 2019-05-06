@@ -40,6 +40,8 @@ public class Choice {
 
     public void choose(){
         question.chosen = this;
+        System.out.println(question.getClass());
+        System.out.println(question.chosen);
     }
 
     public void unChoose(){

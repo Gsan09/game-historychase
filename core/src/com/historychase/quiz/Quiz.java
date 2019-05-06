@@ -87,7 +87,6 @@ public class Quiz extends ArrayList<Question> implements QuizRuntime{
         Collections.shuffle(this);
         for(Question question : this)
             question.initQuiz();
-        System.out.println(this);
     }
 
     @Override
