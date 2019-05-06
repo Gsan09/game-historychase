@@ -39,6 +39,8 @@ public class Constants {
         public static final String GAME_MUSIC = "audio/music/gameplay.mp3";
         public static final String GAME_OVER_MUSIC = "audio/music/gameover.mp3";
         public static final String CREDITS_MUSIC = "audio/music/credits.mp3";
+        public static final String QUIZ_MUSIC = "audio/music/quiz.mp3";
+        public static final String SUCCESS_MUSIC = "audio/music/success.mp3";
 
         public static final String JUMP_SOUND = "audio/sounds/jump.mp3";
         public static final String CLICK_SOUND = "audio/sounds/click.mp3";

@@ -61,6 +61,8 @@ public class HCResourceManager extends ResourceManager{
         this.load(Constants.Path.GAME_MUSIC, Music.class);
         this.load(Constants.Path.GAME_OVER_MUSIC, Music.class);
         this.load(Constants.Path.CREDITS_MUSIC, Music.class);
+        this.load(Constants.Path.QUIZ_MUSIC, Music.class);
+        this.load(Constants.Path.SUCCESS_MUSIC, Music.class);
         this.load(Constants.Path.JUMP_SOUND, Sound.class);
         this.load(Constants.Path.CLICK_SOUND, Sound.class);
     }

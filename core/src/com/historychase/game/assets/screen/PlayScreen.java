@@ -479,6 +479,7 @@ public class PlayScreen extends GameScreen implements OnBackPressListener {
     }
 
     public void gameClear(){
+        game.resource.music.playMusic(Constants.Path.SUCCESS_MUSIC);
         cleared = true;
         Gdx.input.setInputProcessor(clearScene.stage);
         Settings.instance.cleared[worldMap.getID()] = true;

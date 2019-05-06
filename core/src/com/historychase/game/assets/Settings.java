@@ -9,8 +9,8 @@ public class Settings {
 
     public static final Settings instance = new Settings();
 
-    public float musicVolume = 0.5f;
-    public float soundVolume = 0.5f;
+    public float musicVolume = 1f;
+    public float soundVolume = 1f;
     public boolean musicEnabled = true;
     public boolean soundEnabled = true;
 

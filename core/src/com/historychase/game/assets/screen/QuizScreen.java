@@ -69,6 +69,7 @@ public class QuizScreen extends GameScreen {
         controls = new ControlTable();
         stage.addActor(controls);
         stage.act();
+        game.resource.music.playMusic(Constants.Path.QUIZ_MUSIC,true);
     }
 
     public void switchTable(Table table){
@@ -125,6 +126,8 @@ public class QuizScreen extends GameScreen {
         private int score;
         public SummaryTable(Quiz quiz){
             super();
+
+            game.resource.music.playMusic(Constants.Path.SUCCESS_MUSIC,true);
             setFillParent(true);
             top();
             add(newOrdinaryLabel("Quiz Summary")).left().pad(10).colspan(2);
@@ -362,7 +365,10 @@ public class QuizScreen extends GameScreen {
                     }else if(activeTable instanceof SummaryTable){
                         SummaryTable st = ((SummaryTable)activeTable);
                         switchTable(new RatingTable(st.score));
+                    }else if(activeTable instanceof RatingTable){
+                        game.setScreen(new MainMenuScreen(game));
                     }
+
                 }
                 @Override
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -429,6 +435,7 @@ public class QuizScreen extends GameScreen {
                 label.addListener(new InputListener(){
                     @Override
                     public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                        game.resource.music.playSound(Constants.Path.CLICK_SOUND);
                             selectedChoice = label;
                             choice.choose();
                             controls.setVisible(true);
