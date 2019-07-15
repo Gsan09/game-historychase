@@ -94,8 +94,8 @@ public class StoryScreen extends GameScreen {
 
         Label done = new Label("Done",styleWhite);
         done.setAlignment(Align.center);
-        done.setWidth(50);
-        done.setPosition((viewport.getWorldWidth()*0.9f)-done.getWidth(),(viewport.getWorldHeight()*0.9f)-done.getHeight());
+        done.setWidth(100);
+//        done.setPosition((viewport.getWorldWidth()*0.9f)-done.getWidth(),(viewport.getWorldHeight()*0.9f)-done.getHeight());
         done.addListener(new InputListener(){
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -111,9 +111,10 @@ public class StoryScreen extends GameScreen {
                     game.setScreen(new StorySelectScreen(game));
             }
         });
+        table.add(done).right().width(60).pad(20);
+
         stage.addActor(table);
 
-        stage.addActor(done);
         stage.act();
         stage.addListener(new InputListener(){
             @Override
@@ -124,7 +125,7 @@ public class StoryScreen extends GameScreen {
             @Override
             public void touchDragged(InputEvent event, float x, float y, int pointer) {
                 float newPosition = lastScroll-(scrollValue-y);
-                if(newPosition > 0 &&  newPosition <= story.getMaxScroll()){
+                if(newPosition > 0 &&  newPosition <= story.getMaxScroll() + 50){
                     table.setPosition(table.getX(),newPosition);
                 }
             }
