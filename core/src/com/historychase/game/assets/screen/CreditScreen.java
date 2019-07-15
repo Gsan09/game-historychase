@@ -68,6 +68,11 @@ public class CreditScreen extends GameScreen {
         addName("Technical Critic","Ma. Yvonne Czarina R. Costelo");
         addFullRow("");
         addFullRow("");
+        addFullRow("Cavite Historical Sites Stories & \n Pictures Retrieved from");
+        addFullRow("http://cavite.gov.ph/home/category/tourism\n/filter/historical-sites/").center();
+        addFullRow("");
+        addFullRow("");
+        addFullRow("");
         addFullRow("");
         addFullRow("History Chase - Cavite Version");
         addFullRow("© All Rights Reserved 2019");
@@ -128,10 +133,10 @@ public class CreditScreen extends GameScreen {
                     music_playing = true;
                     game.resource.music.playMusic(CREDITS_MUSIC);
                 }
-                if((stayTimer += delta) > 5 && table.getY()+20*delta < 445.5918){
+                if((stayTimer += delta) > 5 && table.getY()+20*delta < 600.5918){
                     table.setPosition(0,table.getY()+20*delta);
                 }
-                if(table.getY()+20*delta >= 445.5918){
+                if(table.getY()+20*delta >= 600.5918){
                     timer_start = true;
                 }
                 clearTable.setVisible(false);

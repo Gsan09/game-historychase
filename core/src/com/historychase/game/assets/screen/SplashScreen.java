@@ -58,7 +58,6 @@ public class SplashScreen extends GameScreen {
                     }
 
                     elapsed += delta;
-                    Gdx.app.log("Splash Screen", elapsed + ":" + mockProgress);
 
                     Gdx.gl.glClearColor(255, 255, 255, 1);
                     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
