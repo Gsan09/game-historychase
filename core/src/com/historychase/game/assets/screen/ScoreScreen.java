@@ -39,7 +39,7 @@ public class ScoreScreen extends GameScreen {
     private OrthographicCamera camera;
     private Stage stage;
     private Table table;
-    private Label.LabelStyle style,styleWhite;
+    private Label.LabelStyle style,styleWhite,styleLabel;
     private StaticBackground background;
     private float scrollValue = 0;
     private float lastScroll = 0;
@@ -56,6 +56,7 @@ public class ScoreScreen extends GameScreen {
         style= new Label.LabelStyle(new BitmapFont(), Color.WHITE);
         styleWhite= new Label.LabelStyle(new BitmapFont(), Color.WHITE);
         styleWhite.background = new TextureRegionDrawable(new Texture("images/story_select.png"));
+
         background = new StaticBackground(this);
         background.setImage("images/bg.jpg");
         initTable();
@@ -86,9 +87,9 @@ public class ScoreScreen extends GameScreen {
 
         Settings settings = Settings.instance.loadUserData();
 
-        table.add(new Label("Stage Name",style)).left().padLeft(20).padTop(10);
+        table.add(new Label("Stage Name",style)).left().padLeft(20).padTop(10).padBottom(10);
         table.add().width(100);
-        table.add(new Label("Time",style)).padTop(10).width(100);
+        table.add(new Label("Time",style)).padTop(10).width(100).padBottom(10);
         table.add().row();
 
         for(int i=0;i<8;i++){
