@@ -85,6 +85,12 @@ public class ScoreScreen extends GameScreen {
         };
 
         Settings settings = Settings.instance.loadUserData();
+
+        table.add(new Label("Stage Name",style)).left().padLeft(20).padTop(10);
+        table.add().width(100);
+        table.add(new Label("Time",style)).padTop(10).width(100);
+        table.add().row();
+
         for(int i=0;i<8;i++){
             if(!settings.cleared[i])continue;
             table.add(new Label(stories[i].getTitle(),style)).left().padLeft(20).padTop(10);

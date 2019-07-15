@@ -70,7 +70,7 @@ public class CreditScreen extends GameScreen {
         addFullRow("");
         addFullRow("");
         addFullRow("History Chase - Cavite Version");
-        addFullRow("© All Rights Reserve 2019");
+        addFullRow("© All Rights Reserved 2019");
 
 
         clearTable = new Table();
