@@ -68,6 +68,8 @@ public class QuizScreen extends GameScreen implements QuestionScene.QuizListener
         initQuestionScene();
         initSummaryScene();
         Gdx.input.setInputProcessor(mainScene.stage);
+        Gdx.input.setCatchBackKey(true);
+
     }
 
     private void initMainScene() {

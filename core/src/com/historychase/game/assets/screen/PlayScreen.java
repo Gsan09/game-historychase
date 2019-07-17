@@ -46,7 +46,7 @@ import java.util.List;
 import static com.historychase.game.assets.Constants.Path.GAME_OVER_MUSIC;
 import static com.historychase.game.assets.Constants.Path.JUMP_SOUND;
 
-public class PlayScreen extends GameScreen implements OnBackPressListener {
+public class PlayScreen extends GameScreen implements OnBackPressListener, Instruction.OnEndListener {
 
     public final HistoryChase game;
     public final WorldMap worldMap;
@@ -168,11 +168,10 @@ public class PlayScreen extends GameScreen implements OnBackPressListener {
         showPaused = false;
         showDead = false;
 
-
-        Gdx.input.setInputProcessor(controls.stage);
         Gdx.input.setCatchBackKey(true);
 
         instructionScene = new Instruction(this);
+        instructionScene.setListener(this);
         Gdx.input.setInputProcessor(instructionScene.stage);
 
         worldHighScore = Settings.instance.time[worldMap.getID()];
@@ -342,26 +341,6 @@ public class PlayScreen extends GameScreen implements OnBackPressListener {
         if(instructionScene != null){
             if(!isPaused)pause();
             instructionScene.draw();
-            if((ctStart += dt) >= 2 && !isCreated){
-                instructionScene.tap();
-                instructionScene.stage.addListener(new InputListener(){
-                    @Override
-                    public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                        return true;
-                    }
-                    @Override
-                    public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                        instructionScene = null;
-                        resume();
-                    }
-                });
-                isCreated = true;
-            }
-        }
-
-        if(instructionScene == null && forDispose != null){
-                forDispose.dispose();
-                forDispose = null;
         }
 
         if(!isPaused)
@@ -478,7 +457,17 @@ public class PlayScreen extends GameScreen implements OnBackPressListener {
         Settings.instance.cleared[worldMap.getID()] = true;
         if(gameTimer < worldHighScore || worldHighScore ==0)
             Settings.instance.time[worldMap.getID()] = gameTimer;
+        Settings.instance.newGame = false;
         Settings.instance.saveUserData();
+    }
+
+    @Override
+    public void onEnd() {
+        Instruction i = instructionScene;
+        instructionScene = null;
+        i.dispose();
+        i = null;
+        resume();
     }
 
     private abstract class Act{

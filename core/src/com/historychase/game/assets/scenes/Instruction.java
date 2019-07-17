@@ -7,11 +7,14 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Disposable;
+import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.historychase.game.HistoryChase;
@@ -26,6 +29,9 @@ public class Instruction implements Disposable {
     private ShapeRenderer shape;
     private HistoryChase game;
     private Table table;
+    private boolean hasNext = true;
+    private OnEndListener listener;
+    private boolean allowTap = false;
 
     public Instruction(PlayScreen screen){
         this.screen = screen;
@@ -38,21 +44,55 @@ public class Instruction implements Disposable {
     }
 
     public void create(){
-        final Label.LabelStyle style = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
-
         table = new Table();
 
         table.top();
         table.setFillParent(true);
-        table.setBackground(new TextureRegionDrawable(new Texture("images/tutorial.png")));
+
+        table.setBackground(new TextureRegionDrawable(new Texture("images/trt1.png")));
+
+        stage.addListener(new InputListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                next();
+            }
+        });
 
         stage.addActor(table);
 
         stage.act();
+        Timer.schedule(new Timer.Task() {
+            @Override
+            public void run() {
+                allowTap = true;
+            }
+        },0.5f);
     }
 
-    public void tap(){
-        table.setBackground(new TextureRegionDrawable(new Texture("images/tutorial_tap.png")));
+    public void next() {
+        allowTap = false;
+        if (hasNext) {
+            hasNext = false;
+            table.setBackground(new TextureRegionDrawable(new Texture("images/trt2.png")));
+        } else {
+            if(listener != null)
+                listener.onEnd();
+        }
+        Timer.schedule(new Timer.Task() {
+            @Override
+            public void run() {
+                allowTap = true;
+            }
+        },1f);
+    }
+
+    public void setListener(OnEndListener listener) {
+        this.listener = listener;
     }
 
     @Override
@@ -77,5 +117,9 @@ public class Instruction implements Disposable {
         shape.end();
         Gdx.gl.glDisable(GL20.GL_BLEND);
         stage.draw();
+    }
+
+    public interface OnEndListener {
+        public void onEnd();
     }
 }
