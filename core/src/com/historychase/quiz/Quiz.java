@@ -11,14 +11,14 @@ public class Quiz extends ArrayList<Question> implements QuizRuntime{
         question.makeChoice("November 4-7 1896");
         this.add(question);
 
-        question = new Question("Who was killed by Gen. Pascual Alvarez of the Sangguniang","Magdiwang in “bulwagan” of the Noveleta Tribunal?");
-        question.makeChoice("Guardia Civil Capt. Antonio Robledo");
-        question.makeChoice("Guardia Civil Capt. Antonio Rebolledo",true);
+        question = new Question("Who was killed by Gen. Pascual Alvarez of","the SangguniangMagdiwang in “bulwagan”","of the Noveleta Tribunal?");
+        question.makeChoice("Guardia Civil\nCapt. Antonio Robledo");
+        question.makeChoice("Guardia Civil\nCapt. Antonio Rebolledo",true);
         this.add(question);
 
         question = new Question("The shore of the Cañacao Bay near the former Cavite Royal","Arsenal was where the province's patron saint","an icon known as?");
         question.makeChoice("Our lady of Lourdes");
-        question.makeChoice("Lady of Solitude of Porta Vaga",true);
+        question.makeChoice("Lady of Solitude of\nPorta Vaga",true);
         this.add(question);
 
         question = new Question("Naval Station Sangley Point was a communication and","hospital facility of the?");
@@ -36,7 +36,7 @@ public class Quiz extends ArrayList<Question> implements QuizRuntime{
         question.makeChoice("August 21, 1896");
         this.add(question);
 
-        question = new Question("A great son of a Caviteño","the composer of the Philippine National Anthem");
+        question = new Question("A great son of a Caviteño, the composer of","the Philippine National Anthem");
         question.makeChoice("Julian Felipe",true);
         question.makeChoice("Jose Palma");
         this.add(question);
@@ -52,18 +52,18 @@ public class Quiz extends ArrayList<Question> implements QuizRuntime{
         this.add(question);
 
         question = new Question("Inside this Dasmarinas Catholic Church, now renovated","Hundreds of Filipino families were killed by Spaniards","during the Lachambre offensive to recover lost territory in late","August, 1897. The event was known as?");
-        question.makeChoice("Battle of Perez- Dasmarinas",true);
+        question.makeChoice("Battle of\nPerez-Dasmarinas",true);
         question.makeChoice("Battle of Dasmarinas");
         this.add(question);
 
-        question = new Question("Gen. Emilio Aguinaldo appointed","General Baldomero Aguinaldo as the Commanding officer of?");
+        question = new Question("Gen. Emilio Aguinaldo appointed","General Baldomero Aguinaldo","as the Commanding officer of?");
         question.makeChoice("Southern Luzon Provinces",true);
         question.makeChoice("Western Luzon Provinces");
         this.add(question);
 
         question = new Question("Well remembered as the Co-founder of the KKK");
         question.makeChoice("Don Ladislao Diwa",true);
-        question.makeChoice("Don Severino De Las Alas");
+        question.makeChoice("Don Severino\nDe Las Alas");
         this.add(question);
 
         question = new Question("Aguinaldo ancestral home where Gen. Emilio Aguinaldo","proclaimed Philippine Independence from Spain on?");
@@ -72,13 +72,13 @@ public class Quiz extends ArrayList<Question> implements QuizRuntime{
         this.add(question);
 
         question = new Question("It is where the senior band members rehearsed","the national anthem Marcha Filipina before it was played","during the declaration of the Philippine Independence.");
-        question.makeChoice("General Trias Municipal and old Church",true);
-        question.makeChoice("Cavite City Municipal and old church");
+        question.makeChoice("General Trias Municipal\n& old Church",true);
+        question.makeChoice("Cavite City Municipal\n& old church");
         this.add(question);
 
         question = new Question("Due to the strategic location of Corregidor Concrete","emplacements and bomb-proof shelters were constructed"," and trails and roads were laid out on the island.","This was a planned called?");
         question.makeChoice("Harbor Defense of Cavite",true);
-        question.makeChoice("Harbor Defenses of Manila and Subic bay");
+        question.makeChoice("Harbor Defenses of Manila\n& Subic bay");
         this.add(question);
     }
 
@@ -99,5 +99,36 @@ public class Quiz extends ArrayList<Question> implements QuizRuntime{
             stringVal += "\n\t" + question;
 
         return stringVal;
+    }
+
+    public String getRating() {
+        String rating = "";
+        int score = getScore();
+        if(score <= 2)
+            rating = "POOR";
+        else if(score <=5)
+            rating = "FAIR";
+        else if(score <=7)
+            rating = "GOOD";
+        else if(score <=10)
+            rating = "GREAT";
+        else if(score <=12)
+            rating = "IMPRESSIVE";
+        else if(score <=14)
+            rating = "EXCELLENT";
+        else if(score <=15)
+            rating = "PERFECT";
+        return rating;
+    }
+
+    public int getScore() {
+        int score = 0;
+        for(Question q: this) {
+            Choice c = q.getChosen();
+            if( c!= null) {
+                if(c.isCorrect())score++;
+            }
+        }
+        return score;
     }
 }

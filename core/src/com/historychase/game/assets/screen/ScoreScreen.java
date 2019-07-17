@@ -145,7 +145,7 @@ public class ScoreScreen extends GameScreen {
             @Override
             public void touchDragged(InputEvent event, float x, float y, int pointer) {
                 float newPosition = lastScroll-(scrollValue-y);
-                if(newPosition > 0 &&  newPosition <= 161.875f){
+                if(newPosition > 0 &&  newPosition <= 200.875f){
                     table.setPosition(table.getX(),newPosition);
                 }
             }

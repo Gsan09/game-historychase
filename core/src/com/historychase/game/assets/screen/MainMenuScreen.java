@@ -23,6 +23,7 @@ import com.historychase.game.assets.Constants;
 import com.historychase.game.assets.Settings;
 import com.historychase.game.assets.scenes.Options;
 import com.historychase.game.assets.scenes.Unlock;
+import com.historychase.game.quiz.QuizScreen;
 
 
 public class MainMenuScreen extends GameScreen {
