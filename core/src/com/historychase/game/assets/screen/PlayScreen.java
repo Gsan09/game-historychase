@@ -172,13 +172,8 @@ public class PlayScreen extends GameScreen implements OnBackPressListener {
         Gdx.input.setInputProcessor(controls.stage);
         Gdx.input.setCatchBackKey(true);
 
-        if(!settings.cleared[0]){
-            forDispose = new Instruction(this);
-            instructionScene = forDispose;
-            settings.saveUserData();
-            Gdx.input.setInputProcessor(instructionScene.stage);
-        }
-
+        instructionScene = new Instruction(this);
+        Gdx.input.setInputProcessor(instructionScene.stage);
 
         worldHighScore = Settings.instance.time[worldMap.getID()];
 
@@ -356,8 +351,6 @@ public class PlayScreen extends GameScreen implements OnBackPressListener {
                     }
                     @Override
                     public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                        Settings.instance.newGame = false;
-                        Settings.instance.saveUserData();
                         instructionScene = null;
                         resume();
                     }
