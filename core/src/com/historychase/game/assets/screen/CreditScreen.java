@@ -61,7 +61,7 @@ public class CreditScreen extends GameScreen {
         addFullRow("");
         addName("Developers:","Bart Ceazar D. Galarde");
         addName("","John Mark T. Bombay");
-        addName("","Antonio D. Della Torre Jr.");
+        addName("","Antonio D. Dela Torre Jr.");
         addFullRow("");
         addFullRow("Special thanks to");
         addName("Adviser","Mark Philip M. Sy");
