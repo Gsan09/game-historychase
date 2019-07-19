@@ -86,7 +86,7 @@ public class QuestionScene implements Disposable {
                         lblChoice1.setStyle(selectedC);
                     }else {
                         lblCorrect.setStyle(wrong);
-                        lblCorrect.setText("You are Wrong.");
+                        lblCorrect.setText("You are Incorrect.");
                         lblChoice1.setStyle(selectedW);
                     }
                     Timer.instance().scheduleTask(new Timer.Task() {
@@ -114,7 +114,7 @@ public class QuestionScene implements Disposable {
                         lblChoice2.setStyle(selectedC);
                     }else {
                         lblCorrect.setStyle(wrong);
-                        lblCorrect.setText("You are Wrong.");
+                        lblCorrect.setText("You are Incorrect.");
                         lblChoice2.setStyle(selectedW);
                     }
                     Timer.instance().scheduleTask(new Timer.Task() {

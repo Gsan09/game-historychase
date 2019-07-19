@@ -174,7 +174,7 @@ public class SummaryScene implements Disposable {
     private Label getAnswerLabel(Quiz quiz,int position) {
         Label label = new Label("",wrong);
         if(position < quiz.size()) {
-            String status = "Wrong";
+            String status = "Incorrect";
             if(quiz.get(position).getChosen() != null) {
                 if(quiz.get(position).getChosen().isCorrect()) {
                     status = "Correct";

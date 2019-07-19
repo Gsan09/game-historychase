@@ -55,6 +55,7 @@ public class ScoreScreen extends GameScreen {
         stage = new Stage(viewport,game.batch);
         style= new Label.LabelStyle(new BitmapFont(), Color.WHITE);
         styleWhite= new Label.LabelStyle(new BitmapFont(), Color.WHITE);
+        styleLabel= new Label.LabelStyle(new BitmapFont(), Color.YELLOW);
         styleWhite.background = new TextureRegionDrawable(new Texture("images/story_select.png"));
 
         background = new StaticBackground(this);
@@ -69,7 +70,7 @@ public class ScoreScreen extends GameScreen {
         table.top();
         table.left();
         table.setFillParent(true);
-        Label title = new Label("High Scores",style);
+        Label title = new Label("High Scores",styleLabel);
         title.setAlignment(Align.left);
         table.add(title).left().pad(20).colspan(3);
         table.row();
@@ -87,9 +88,9 @@ public class ScoreScreen extends GameScreen {
 
         Settings settings = Settings.instance.loadUserData();
 
-        table.add(new Label("Stage Name",style)).left().padLeft(20).padTop(10).padBottom(10);
+        table.add(new Label("Stage Name",styleLabel)).left().padLeft(20).padTop(10).padBottom(10);
         table.add().width(100);
-        table.add(new Label("Time",style)).padTop(10).width(100).padBottom(10);
+        table.add(new Label("Time",styleLabel)).padTop(10).width(100).padBottom(10);
         table.add().row();
 
         for(int i=0;i<8;i++){
